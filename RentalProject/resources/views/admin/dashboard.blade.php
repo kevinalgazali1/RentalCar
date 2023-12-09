@@ -1,14 +1,114 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+<style>
+    .card {
+        background-color: #776B5D;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s;
+        animation: scaleIn 0.5s ease-in-out;
+        /* Animation definition */
+        color: #000;
+    }
+
+    @keyframes scaleIn {
+        from {
+            transform: scale(0.5);
+        }
+
+        to {
+            transform: scale(1);
+        }
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+    }
+
+    .card-header {
+        background-color: #3498db;
+        color: #000 ;
+        border-radius: 10px 10px 0 0;
+        padding: 15px;
+    }
+
+
+    header {
+        background-color: #7f8c8d;
+        padding: 30px;
+        border-bottom-right-radius: 100px;
+        color: #000;
+        text-align: center;
+        animation: slideIn 1s ease-in-out;
+        /* Animation definition */
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: -1;
+            transform: translateX(-200px);
+        }
+
+        to {
+            opacity: 2;
+            transform: translateX(0);
+        }
+    }
+
+    .badge-custom {
+        border-radius: 0 0 8px 8px;
+        padding: 8px;
+    }
+
+    .rent-price {
+        font-size: 1.2rem;
+        color: #e74c3c;
+    }
+
+    .list-style-group li {
+        font-size: 0.9rem;
+        margin: 5px 0;
+        padding: 5px 0;
+        color: #7f8c8d;
+    }
+
+    .btn-primary {
+        background-color: #e74c3c;
+        border-color: #e74c3c;
+        transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #c0392b;
+        border-color: #c0392b;
+    }
+
+    .animate-exit {
+    animation: slideOut 0.5s ease-out;
+    /* Animasi keluar */
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+</style>
+    <div class="d-sm-flex align-items-center justify-content-between pt-4 mb-4">
+        <h1 class="h3 mb-0 text-white">Dashboard</h1>
     </div>
     <div class="row">
         <section class="py-5">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 justify-content-center">
-                    @foreach ($cars as $car)
+                    @foreach ($cars->take(3) as $car)
                         <div class="col mb-5">
                             <div class="card h-100">
                                 <!-- Sale badge-->
@@ -31,15 +131,15 @@
                                                 {{ number_format($car->harga_sewa, 0, ',', '.') }}/</span>day
                                         </div>
                                         <ul class="list-unstyled list-style-group">
-                                            <li class="border-bottom p-2 d-flex justify-content-between">
+                                            <li class="border-bottom p-2 d-flex justify-content-between" style="color: #000">
                                                 <span>Bahan Bakar</span>
                                                 <span style="font-weight: 600">{{ $car->bahan_bakar }}</span>
                                             </li>
-                                            <li class="border-bottom p-2 d-flex justify-content-between">
+                                            <li class="border-bottom p-2 d-flex justify-content-between" style="color: #000">
                                                 <span>Jumlah Kursi</span>
                                                 <span style="font-weight: 600">{{ $car->jumlah_kursi }}</span>
                                             </li>
-                                            <li class="border-bottom p-2 d-flex justify-content-between">
+                                            <li class="border-bottom p-2 d-flex justify-content-between" style="color: #000">
                                                 <span>Transmisi</span>
                                                 <span style="font-weight: 600">{{ $car->transmisi }}</span>
                                             </li>

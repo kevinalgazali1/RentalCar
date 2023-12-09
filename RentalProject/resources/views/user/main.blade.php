@@ -18,8 +18,8 @@
 
     <style>
         body {
-            background-image: url('/img/bg.jpg');
-            background-color: #FCF5ED;
+            /* background-image: url('/img/bg.jpg'); */
+            background-color: #776B5D;
             background-size: cover;
             /* agar background mencakup seluruh layar */
             background-attachment: fixed;
@@ -27,17 +27,47 @@
         }
 
         .navbar {
-            background-color: transparent !important;
-            /* mengatur warna latar belakang navbar menjadi transparan */
+            transition: background-color 0.3s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.01);
+        }
+
+        .navbar-brand,
+        .navbar-nav a {
+            color: #D3E0EA !important; /* Change the navbar text color */
+        }
+
+        .navbar-toggler-icon {
+            background-color: #D3E0EA; /* Change the navbar toggler icon color */
+        }
+
+        .navbar-toggler {
+            border-color: #D3E0EA; /* Change the navbar toggler border color */
+        }
+
+        .dropdown-menu {
+            background-color: #1E2A2D; /* Change the dropdown menu background color */
+        }
+
+        .dropdown-item {
+            color: #D3E0EA !important; /* Change the dropdown item text color */
+        }
+
+        .dropdown-divider {
+            border-color: #D3E0EA; /* Change the dropdown divider color */
+        }
+
+        .footer {
+            background-color: #1E2A2D; /* Change the footer background color */
+            color: #D3E0EA; /* Change the footer text color */
         }
     </style>
 </head>
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="{{ route('user.index') }}" style="color: white">VinRent</a>
+            <a class="navbar-brand" href="{{ route('user.index') }}" style="color: black">VinRent</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -47,7 +77,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
                             {{ Auth::check() ? Auth::user()->name : 'Menu' }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -86,6 +116,21 @@
     <script src="{{ asset('frontend/js/bootstrap.js') }}"></script>
     <!-- Core theme JS-->
     <script src="{{ asset('frontend/js/scripts.js') }}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var navbar = document.querySelector(".navbar");
+
+            window.addEventListener("scroll", function() {
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+                    /* Change the background color when scrolling down */
+                } else {
+                    navbar.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+                    /* Restore the initial background color when scrolling up */
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

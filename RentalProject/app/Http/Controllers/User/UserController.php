@@ -148,10 +148,8 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $nama_mobil = $request->input('search'); // Ambil nilai yang diinputkan pengguna
-        $jumlah_kursi = $request->input('search'); // Ambil nilai yang diinputkan pengguna
     
         $cars = Car::where('nama_mobil', 'like', '%' . $nama_mobil . '%')->get();
-        $cars = Car::where('jumlah_kursi', 'like', '%' . $jumlah_kursi . '%')->get();
         return view('user.search', ['cars' => $cars]);
     }
 

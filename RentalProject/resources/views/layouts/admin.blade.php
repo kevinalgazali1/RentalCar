@@ -23,6 +23,37 @@
 </head>
 
 <body id="page-top">
+    <style>
+        body {
+            /* background-image: url('/img/bg.jpg'); */
+            background-color: #776B5D;
+            background-size: cover;
+            /* agar background mencakup seluruh layar */
+            background-attachment: fixed;
+            /* agar background tetap saat menggulir */
+        }
+
+        .navbar {
+            transition: background-color 0.3s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.01);
+        }
+
+        .navbar-expand,
+        .navbar-nav a {
+            color: #000000 !important;
+            /* Change the navbar text color */
+        }
+
+
+        .dropdown-menu {
+            background-color: #1E2A2D; /* Change the dropdown menu background color */
+        }
+
+        .dropdown-item {
+            color: #D3E0EA !important; /* Change the dropdown item text color */
+        }
+
+    </style>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -35,10 +66,10 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">
+            <div id="content" style="background-color: #1E2A2D;">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-primary topbar mb-4 static-top shadow" style="background-color: #9BB8CD">
+                <nav class="navbar navbar-expand topbar static-top shadow" style="background-color:#D3E0EA">
                     <a class="navbar-brand" href="{{ route('dashboard.index') }}" style="color: black">VinRent</a>
 
                     <!-- Topbar Navbar -->
@@ -46,7 +77,8 @@
 
                         <!-- Nav Item - Log Out -->
                         <li class="nav-item active">
-                            <a class="nav-link" onclick="document.getElementById('logout-form').submit()" href="#">
+                            <a class="nav-link" onclick="document.getElementById('logout-form').submit()"
+                                href="#">
                                 <i class="fas fa-fw fa-sign-out-alt" style="color: black"></i>
                                 <span style="color: black">Log Out</span></a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -61,7 +93,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid" style="background-color: #1E2A2D; padding-top:50px">
 
                     <!-- Page Heading -->
                     @if (session()->has('message'))
@@ -93,7 +125,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer" style="background-color: #1E2A2D">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Vinzli Website 2023</span>

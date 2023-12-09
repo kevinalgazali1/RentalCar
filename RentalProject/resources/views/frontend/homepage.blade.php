@@ -2,41 +2,108 @@
 @section('content')
     <style>
         .card {
-            background-color: rgba(255, 255, 255, 0.8);
-            /* RGBA dengan tingkat transparansi 0.8 */
+            background-color: #ffffff;
             border-radius: 10px;
-            /* Tambahkan border-radius untuk memberikan sudut yang sedikit melengkung */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            /* Tambahkan box-shadow untuk efek bayangan */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            animation: scaleIn 0.5s ease-in-out;
+            /* Animation definition */
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.5);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .card:hover {
+            transform: scale(1.02);
         }
 
         .card-header {
-            background-color: rgba(0, 123, 255, 0.8);
-            /* Ubah warna header card sesuai kebutuhan */
-            color: white;
-            /* Ubah warna teks header card sesuai kebutuhan */
+            background-color: #3498db;
+            color: #ffffff;
             border-radius: 10px 10px 0 0;
-            /* Terapkan border-radius hanya pada sudut atas card header */
+            padding: 15px;
         }
 
-        .card-body {
-            padding: 20px;
-            /* Tambahkan padding pada card body */
-        }
 
-        /* Tambahkan gaya untuk header transparan */
         header {
-            background-color: rgba(118, 118, 118, 0.5);
-            /* Atur nilai transparansi sesuai kebutuhan */
-            padding: 20px;
-            /* Sesuaikan padding sesuai kebutuhan */
+            background-color: #7f8c8d;
+            padding: 30px;
+            border-bottom-right-radius: 100px;
+            color: #000;
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+            /* Animation definition */
         }
+
+        @keyframes slideIn {
+            from {
+                opacity: -1;
+                transform: translateX(-200px);
+            }
+
+            to {
+                opacity: 2;
+                transform: translateX(0);
+            }
+        }
+
+        .badge-custom {
+            border-radius: 0 0 8px 8px;
+            padding: 8px;
+        }
+
+        .rent-price {
+            font-size: 1.2rem;
+            color: #e74c3c;
+        }
+
+        .list-style-group li {
+            font-size: 0.9rem;
+            margin: 5px 0;
+            padding: 5px 0;
+            color: #7f8c8d;
+        }
+
+        .btn-primary {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+        }
+
+        .animate-exit {
+        animation: slideOut 0.5s ease-out;
+        /* Animasi keluar */
+    }
+
+    @keyframes slideOut {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        to {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    }
     </style>
     <header class="">
         <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
+            <div class="text-center">
                 <h1 class="display-4 fw-bolder">Sistem Pemesanan Mobil</h1>
-                <p class="lead fw-normal text-white-50 mb-0">
+                <p class="lead fw-normal mb-0">
                     Mudah, Cepat, dan Terpercaya
                 </p>
             </div>
@@ -46,7 +113,7 @@
     <section class="py-5">
         <div class="container px-4 px-lg-5">
             @if (count($cars) > 0)
-            <h3 class="text-center mb-5" style="color: white">Daftar Mobil</h3>
+                <h3 class="text-center mb-5" style="color: white">Daftar Mobil</h3>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     @foreach ($cars->take(5) as $car)
                         <div class="col mb-5">
@@ -66,7 +133,7 @@
                                         <h5 class="fw-bolder">{{ $car->nama_mobil }}</h5>
                                         <!-- Product price-->
                                         <div class="rent-price mb-3" style="color: black">
-                                            <span class="text-primary">Rp
+                                            <span class="text-white">Rp
                                                 {{ number_format($car->harga_sewa, 0, ',', '.') }}/</span>day
                                         </div>
                                         <ul class="list-unstyled list-style-group">
@@ -102,4 +169,21 @@
             @endif
         </div>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll('.btn-primary');
+    
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const card = button.closest('.card');
+                    card.classList.add('animate-exit');
+    
+                    setTimeout(() => {
+                        // Tempatkan logika redirect atau apa yang Anda inginkan setelah animasi keluar di sini
+                        window.location.href = button.getAttribute('href');
+                    }, 500); // Sesuaikan dengan durasi animasi (0.5s)
+                });
+            });
+        });
+    </script>
 @endsection

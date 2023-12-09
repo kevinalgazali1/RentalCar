@@ -23,8 +23,7 @@
 
     <style>
         body {
-            background-image: url('/img/bg.jpg');
-            background-color: #FCF5ED;
+            background-color: #4a4a4a;
             background-size: cover; /* agar background mencakup seluruh layar */
             background-attachment: fixed; /* agar background tetap saat menggulir */
         }
@@ -49,7 +48,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm mb-4 pb-3 pt-3">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-lg mb-4 pb-3 pt-3">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}" style="color: white">
                     VinRent
@@ -87,7 +86,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
         <main class="container">
             @yield('content')

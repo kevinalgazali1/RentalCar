@@ -16,24 +16,27 @@
     <link href="{{ asset('frontend/css/styles.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}" />
     <style>
-                body {
-            background-image: url('/img/bg.jpg');
-            background-color: #FCF5ED;
-            background-size: cover; /* agar background mencakup seluruh layar */
-            background-attachment: fixed; /* agar background tetap saat menggulir */
+        body {
+            /* background-image: url('/img/bg.jpg'); */
+            background-color: #776B5D;
+            background-size: cover;
+            /* agar background mencakup seluruh layar */
+            background-attachment: fixed;
+            /* agar background tetap saat menggulir */
         }
 
         .navbar {
-            background-color: transparent !important; /* mengatur warna latar belakang navbar menjadi transparan */
+            transition: background-color 0.3s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.01);
         }
     </style>
 </head>
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light pt-3 pb-3">
+    <nav class="navbar navbar-expand-lg navbar-light pt-3 pb-3 sticky-top">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="{{ route('homepage') }}" style="color: white">VinRent</a>
+            <a class="navbar-brand" href="{{ route('homepage') }}" style="color: black; font-weight:500">VinRent</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -42,10 +45,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" onclick="document.getElementById('login-form').submit()" href="{{ route('login') }}">
+                        <a class="nav-link" onclick="document.getElementById('login-form').submit()"
+                            href="{{ route('login') }}">
                             <i class="fas fa-fw fa-sign-out-alt"></i>
-                            <span style="color: white">Login</span></a>
-                            <form id="login-form" action="{{ route('login') }}" method="POST">
+                            <span style="color: black; font-weight:500">Login</span></a>
+                        <form id="login-form" action="{{ route('login') }}" method="POST">
                             @csrf
                         </form>
                     </li>
@@ -67,6 +71,21 @@
     <script src="{{ asset('frontend/js/bootstrap.js') }}"></script>
     <!-- Core theme JS-->
     <script src="{{ asset('frontend/js/scripts.js') }}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var navbar = document.querySelector(".navbar");
+
+            window.addEventListener("scroll", function() {
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+                    /* Change the background color when scrolling down */
+                } else {
+                    navbar.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+                    /* Restore the initial background color when scrolling up */
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

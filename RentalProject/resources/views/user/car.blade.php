@@ -2,27 +2,103 @@
 @section('content')
 <style>
     .card {
-        background-color: rgba(255, 255, 255, 0.8);
-        /* RGBA dengan tingkat transparansi 0.8 */
+        background-color: #776B5D;
         border-radius: 10px;
-        /* Tambahkan border-radius untuk memberikan sudut yang sedikit melengkung */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        /* Tambahkan box-shadow untuk efek bayangan */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s;
+        animation: scaleIn 0.5s ease-in-out;
+        /* Animation definition */
+        color: #000;
+    }
+
+    @keyframes scaleIn {
+        from {
+            transform: scale(0.5);
+        }
+
+        to {
+            transform: scale(1);
+        }
+    }
+
+    .card:hover {
+        transform: scale(1.02);
     }
 
     .card-header {
-        background-color: rgba(0, 123, 255, 0.8);
-        /* Ubah warna header card sesuai kebutuhan */
-        color: white;
-        /* Ubah warna teks header card sesuai kebutuhan */
+        background-color: #3498db;
+        color: #000 ;
         border-radius: 10px 10px 0 0;
-        /* Terapkan border-radius hanya pada sudut atas card header */
+        padding: 15px;
     }
 
-    .card-body {
-        padding: 20px;
-        /* Tambahkan padding pada card body */
+
+    header {
+        background-color: #7f8c8d;
+        padding: 30px;
+        border-bottom-right-radius: 100px;
+        color: #000;
+        text-align: center;
+        animation: slideIn 1s ease-in-out;
+        /* Animation definition */
     }
+
+    @keyframes slideIn {
+        from {
+            opacity: -1;
+            transform: translateX(-200px);
+        }
+
+        to {
+            opacity: 2;
+            transform: translateX(0);
+        }
+    }
+
+    .badge-custom {
+        border-radius: 0 0 8px 8px;
+        padding: 8px;
+    }
+
+    .rent-price {
+        font-size: 1.2rem;
+        color: #e74c3c;
+    }
+
+    .list-style-group li {
+        font-size: 0.9rem;
+        margin: 5px 0;
+        padding: 5px 0;
+        color: #7f8c8d;
+    }
+
+    .btn-primary {
+        background-color: #e74c3c;
+        border-color: #e74c3c;
+        transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #c0392b;
+        border-color: #c0392b;
+    }
+
+    .animate-exit {
+    animation: slideOut 0.5s ease-out;
+    /* Animasi keluar */
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
 </style>
 
     <!-- Section-->
@@ -49,15 +125,15 @@
                                     <span class="text-primary">Rp {{ number_format($car->harga_sewa, 0, ',', '.') }}/</span>day
                                 </div>
                                 <ul class="list-unstyled list-style-group">
-                                    <li class="border-bottom p-2 d-flex justify-content-between">
+                                    <li class="border-bottom p-2 d-flex justify-content-between text-black">
                                         <span>Bahan Bakar</span>
                                         <span style="font-weight: 600">{{ $car->bahan_bakar }}</span>
                                     </li>
-                                    <li class="border-bottom p-2 d-flex justify-content-between">
+                                    <li class="border-bottom p-2 d-flex justify-content-between text-black">
                                         <span>Jumlah Kursi</span>
                                         <span style="font-weight: 600">{{ $car->jumlah_kursi }}</span>
                                     </li>
-                                    <li class="border-bottom p-2 d-flex justify-content-between">
+                                    <li class="border-bottom p-2 d-flex justify-content-between text-black">
                                         <span>Transmisi</span>
                                         <span style="font-weight: 600">{{ $car->transmisi }}</span>
                                     </li>
